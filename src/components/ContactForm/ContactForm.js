@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import shortid from 'shortid';
 import PropTypes from 'prop-types'
 import styles from'../../Phonebook.module.css'
+import { connect } from 'react-redux';
+import contactsActions from '../../redux/contacts/contacts-actions';
+
 
 
 class ContactForm extends Component {
@@ -27,8 +30,7 @@ class ContactForm extends Component {
     handleSubmit = e =>{
         e.preventDefault();
         this.props.onSubmit(this.state)
-        // this.props.onSubmit(this.state.name)
-        // this.props.onSubmit(this.state.number)
+
         this.reset();
     }
 
@@ -76,5 +78,9 @@ class ContactForm extends Component {
          );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    onSubmit: ({name, number}) => dispatch(contactsActions.addContact({name, number}))
+})
  
-export default ContactForm;
+export default connect(null, mapDispatchToProps)(ContactForm);
