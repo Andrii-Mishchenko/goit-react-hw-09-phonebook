@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://Andrii-Mishchenko.github.io/goit-react-hw-02-phonebook",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -14,6 +15,7 @@
     "react-redux": "^7.2.4",
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
     "shortid": "^2.2.16",
     "web-vitals": "^1.1.2"
   },
@@ -44,7 +46,6 @@
     ]
   },
   "devDependencies": {
-    "prop-types": "^15.7.2",
-    "redux-devtools-extension": "^2.13.9"
+    "prop-types": "^15.7.2"
   }
 }

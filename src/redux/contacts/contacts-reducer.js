@@ -1,29 +1,20 @@
 import { combineReducers } from "redux";
-import types from './contacts-types'
+import { createReducer } from '@reduxjs/toolkit';
+import actions from './contacts-actions'
 import initialContacts from '../../initialContacts.json'
 
-const items = (state = initialContacts, {type, payload}) => {
-    switch (type) {
-        case types.ADD:
-            return [...state, payload];
-        
-        case types.DELETE:
-            return state.filter(contact => contact.id !== payload);
+const items = createReducer(initialContacts, {
+    
+    [actions.addContact]: (state, { payload }) => state.map(contact => contact.name).includes(payload.name)
+    ? alert(`${payload.name} is already in contacts.`)
+    : [payload, ...state],
+    
+    [actions.deleteContact]: (state, { payload }) => state.filter(contact => contact.id !== payload),
+})
 
-        default:
-            return state;
-    }
-}
-
-const filter = (state = '', {type, payload}) => {
-    switch (type) {
-        case types.FILTER:
-            return payload
-
-        default:
-            return state;
-    }
-}
+const filter = createReducer('', {
+    [actions.filterContacts]: (state, { payload }) => payload,
+})
 
 export default combineReducers({
     items,
