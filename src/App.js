@@ -1,29 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ContactForm from './components/ContactForm'
 import ContactList from './components/ContactList'
 import Filter from './components/Filter'
-import styles from'./Phonebook.module.css'
+import styles from './Phonebook.module.css'
+import contactsOperations from './redux/contacts/contacts-operations';
+
 
 class App extends Component {
+
+    componentDidMount(){
+        this.props.fetchContacts();
+    }
   
-      // formSubmitHandler = ({name, number}) =>{
-   
-    //     const contact = {
-    //         id: shortid.generate(),
-    //         name,
-    //         number
-    //     }
-
-    //     const { contacts } = this.state;
-    //     const names = contacts.map((contact) => contact.name);
-
-    //     names.includes(contact.name)
-    //     ? alert(`${contact.name} is already in contacts.`)
-    //     : this.setState(prevState => ({
-    //         contacts: [contact, ...prevState.contacts]
-    //     }))
-    // }
-
     render() { 
 
         return (  
@@ -31,13 +20,22 @@ class App extends Component {
                 <h1 className={styles.title}>Phonebook</h1>
                 <ContactForm onSubmit={this.formSubmitHandler}/>
                 <h2 className={styles.title}>Contacts</h2>
-                <Filter/>
+                <Filter />
+                {this.props.isLoadingContacts && <h1>Loading</h1>}
                 <ContactList/>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    isLoadingContacts: state.contacts.loading
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
+});
  
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 

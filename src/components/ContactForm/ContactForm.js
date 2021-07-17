@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types'
 import styles from'../../Phonebook.module.css'
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contacts-actions';
+import contactsOperations from '../../redux/contacts/contacts-operations';
 
 
 
@@ -16,6 +16,10 @@ class ContactForm extends Component {
         name: '',
         number: ''
     }
+
+    // componentDidMount() {
+    //     this.props.fetchContacts()
+    // }
 
     nameInputId = shortid.generate();
     numberInputId = shortid.generate();
@@ -79,8 +83,10 @@ class ContactForm extends Component {
     }
 }
 
+
 const mapDispatchToProps = dispatch => ({
-    onSubmit: ({name, number}) => dispatch(contactsActions.addContact({name, number}))
+    onSubmit: ({ name, number }) => dispatch(contactsOperations.addContact({ name, number })),
+    // fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 })
  
 export default connect(null, mapDispatchToProps)(ContactForm);
