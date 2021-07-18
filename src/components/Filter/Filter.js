@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from'../../Phonebook.module.css'
 import { connect } from 'react-redux';
-import {filterContacts} from '../../redux/contacts/contacts-actions';
+import { filterContacts } from '../../redux/contacts';
+import { getFilter } from '../../redux/contacts/contacts-selectors';
+
 
 const Filter = ({value, onChange}) => (
     <div className={styles.contacts}>
@@ -18,13 +20,15 @@ const Filter = ({value, onChange}) => (
 )
  
 Filter.propTypes = {
-    value: PropTypes.string.isRequired,    
+    // value: PropTypes.string.isRequired,    
     onChange: PropTypes.func.isRequired,    
 }
 
 const mapStateToProps = (state) => ({
-    value: state.contacts.filter,
+    value: getFilter(state),
+    
 })
+
 
 const mapDispatchToProps = dispatch => ({
     onChange: (e) => dispatch(filterContacts(e.target.value))

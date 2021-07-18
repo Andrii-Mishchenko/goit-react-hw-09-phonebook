@@ -23,11 +23,6 @@ const middleware = [...getDefaultMiddleware({
     logger
 ];
 
-// const contactsPersistConfig = {
-//     key: 'contacts',
-//     storage,
-//     blacklist: ['filter'],
-// }
 
 const store = configureStore({
     reducer: {
@@ -37,6 +32,6 @@ const store = configureStore({
     middleware,
 });
 
-// const persistor = persistStore(store)
+
 
 export default store;

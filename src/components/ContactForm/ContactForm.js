@@ -3,7 +3,7 @@ import shortid from 'shortid';
 import PropTypes from 'prop-types'
 import styles from'../../Phonebook.module.css'
 import { connect } from 'react-redux';
-import contactsOperations from '../../redux/contacts/contacts-operations';
+import {contactsOperations} from '../../redux/contacts';
 
 
 

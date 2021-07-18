@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import styles from'../../Phonebook.module.css'
 import { connect } from 'react-redux';
-import operations from '../../redux/contacts/contacts-operations';
+import {contactsOperations} from '../../redux/contacts';
+import {getVisibleContacts} from '../../redux/contacts/contacts-selectors';
 
 const ContactList = ({contacts, onDeleteContact}) => (
     <ul className={styles.contacts}>
@@ -24,25 +25,13 @@ ContactList.propTypes = {
     onDeleteContact: PropTypes.func.isRequired,    
 }
 
-const getVisibleContacts =(allContacts, filter) => {
-    const normalizedFilter= filter.toLowerCase();
-    return allContacts.filter(contact=>
-        contact.name.toLowerCase().includes(normalizedFilter));
-}
 
-const mapStateToProps = state => {
-    const { filter, items } = state.contacts;
-   
-    const visibleContacts = getVisibleContacts(items, filter )
-
-    return {
-        
-        contacts: visibleContacts,
-    }
-}
+const mapStateToProps = state =>({
+    contacts: getVisibleContacts(state),
+})
 
 const mapDispatchToProps = dispatch => ({
-    onDeleteContact: (id) => dispatch(operations.deleteContact(id))
+    onDeleteContact: (id) => dispatch(contactsOperations.deleteContact(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

@@ -4,7 +4,8 @@ import ContactForm from './components/ContactForm'
 import ContactList from './components/ContactList'
 import Filter from './components/Filter'
 import styles from './Phonebook.module.css'
-import contactsOperations from './redux/contacts/contacts-operations';
+import {contactsOperations} from './redux/contacts';
+import { getLoading } from './redux/contacts/contacts-selectors';
 
 
 class App extends Component {
@@ -29,7 +30,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLoadingContacts: state.contacts.loading
+    isLoadingContacts: getLoading(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

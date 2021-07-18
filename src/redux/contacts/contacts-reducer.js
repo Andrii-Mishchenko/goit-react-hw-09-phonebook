@@ -1,7 +1,5 @@
 import { combineReducers } from "redux";
 import { createReducer } from '@reduxjs/toolkit';
-// import initialContacts from '../../initialContacts.json'
-
 import {
     fetchContactsRequest,
     fetchContactsSuccess,
@@ -16,7 +14,6 @@ import {
     deleteContactError,
     filterContacts
  } from './contacts-actions'
-
 
 
 const items = createReducer([], {
