@@ -5,6 +5,7 @@ import Container from './components/Container';
 import ContactsView from './views/ContactsView';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
+import NotFoundView from './views/NotFoundView';
 import RegisterView from './views/RegisterView';
 
 
@@ -18,6 +19,7 @@ const App = () =>
             <Route path="/register" component={RegisterView} />
             <Route path="/login" component={LoginView} />
             <Route path="/contacts" component={ContactsView} />
+            <Route component={NotFoundView} />
         </Switch>
     </Container>
  
