@@ -4,8 +4,8 @@ import logger from 'redux-logger';
 import contactsReducer from "./contacts/contacts-reducer";
 import { authReducer } from './auth';
 import {
-  // persistStore,
-  // persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -34,8 +34,8 @@ const authPersistConfig = {
 
 const store = configureStore({
   reducer: {
-        // auth: persistReducer(authPersistConfig, authReducer),
-        auth:  authReducer,
+        auth: persistReducer(authPersistConfig, authReducer),
+        // auth:  authReducer,
         contacts: contactsReducer,
     },
     
@@ -43,6 +43,8 @@ const store = configureStore({
   // devTools: process.env.NODE_ENV === 'development',
 });
 
-// const persistor = persistStore(store)
+const persistor = persistStore(store)
 
-export default store;
+const reduxStore = { store, persistor };
+
+export default reduxStore

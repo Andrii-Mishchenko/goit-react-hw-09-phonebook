@@ -2,8 +2,10 @@ import React from 'react';
 
 import Navigation from './Navigation';
 import styles from '../Phonebook.module.css';
-import UserMenu from './UserMenu/UserMenu';
+import UserMenu from './UserMenu';
 import AuthNav from './AuthNav';
+import { connect } from 'react-redux';
+import { authSelectors } from '../redux/auth';
 
 
 const AppBar = ({isAuthenticated}) => (
@@ -13,5 +15,8 @@ const AppBar = ({isAuthenticated}) => (
     </header>
 );
 
+const mapStateToProps = (state) => ({
+    isAuthenticated: authSelectors.getIsAuthenticated(state)
+})
  
-export default AppBar;
+export default connect(mapStateToProps)(AppBar);
