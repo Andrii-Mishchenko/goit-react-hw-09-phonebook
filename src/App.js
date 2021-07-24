@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import {Switch } from 'react-router-dom';
 import AppBar from './components/AppBar';
 import Container from './components/Container';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 import { authOperations } from './redux/auth';
 import ContactsView from './views/ContactsView';
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
 import NotFoundView from './views/NotFoundView';
 import RegisterView from './views/RegisterView';
+
 
 
 class App extends Component {
@@ -22,11 +25,11 @@ class App extends Component {
                 <AppBar />
                 
                 <Switch>
-                    <Route exact path="/" component={HomeView} />
-                    <Route path="/register" component={RegisterView} />
-                    <Route path="/login" component={LoginView} />
-                    <Route path="/contacts" component={ContactsView} />
-                    <Route component={NotFoundView} />
+                    <PublicRoute exact path="/" component={HomeView} />
+                    <PublicRoute path="/register" restricted component={RegisterView} redirectTo="/contacts" />
+                    <PublicRoute path="/login" restricted component={LoginView} redirectTo="/contacts" />
+                    <PrivateRoute path="/contacts" component={ContactsView} redirectTo="/login" />
+                    <PublicRoute component={NotFoundView} />
                 </Switch>
             </Container>
         );
