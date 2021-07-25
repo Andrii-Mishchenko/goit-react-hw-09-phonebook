@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { authOperations } from './redux/auth';
 
+
 const HomeView = lazy(() => import('./views/HomeView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
 const LoginView = lazy(() => import('./views/LoginView'));
@@ -20,7 +21,7 @@ class App extends Component {
     
     render() { 
         return (
-            <Container>
+            <Container >
                 <AppBar />
                 
                 <Suspense fallback={<p>Loading...</p>}>

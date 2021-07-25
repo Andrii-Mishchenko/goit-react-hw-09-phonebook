@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../Phonebook.module.css';
+import styles from '../../styles/ContactsView.module.css';
 
 const Container = ({ children }) => <div className={styles.container}>{children}</div>;
 

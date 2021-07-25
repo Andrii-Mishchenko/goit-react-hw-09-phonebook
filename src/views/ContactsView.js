@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ContactForm from '../components/ContactForm'
 import ContactList from '../components/ContactList'
 import Filter from '../components/Filter'
-import styles from '../Phonebook.module.css'
+import styles from '../styles/ContactsView.module.css'
 import {contactsOperations} from '../redux/contacts';
 import { getLoading } from '../redux/contacts/contacts-selectors';
 
@@ -22,7 +22,7 @@ class ContactsView extends Component {
                 <ContactForm onSubmit={this.formSubmitHandler}/>
                 <h2 className={styles.title}>Contacts</h2>
                 <Filter />
-                {this.props.isLoadingContacts && <h1>Loading</h1>}
+                {this.props.isLoadingContacts && <h1 className={styles.title}>Loading</h1>}
                 <ContactList/>
             </div>
         );

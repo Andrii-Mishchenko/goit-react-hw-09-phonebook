@@ -3,29 +3,24 @@ import { NavLink } from 'react-router-dom';
 import routes from './routes'
 import { connect } from 'react-redux';
 import { authSelectors } from '../redux/auth';
-// import styles from '../Phonebook.module.css';
+import styles from '../styles/AppBar.module.css';
 
-// const Navigation = () => {
-//     return (
-//         <nav className={styles.Navigation}>
-//             <ul className={styles.NavigationList}>
-//                 <li><NavLink exact to={routes.HomeView}>Home</NavLink></li>
-//                 <li><NavLink to={routes.ContactsView} >Contacts</NavLink></li>
-//             </ul>
-//         </nav>
-//      );
-// }
- 
-// export default Navigation;
+
 
 const Navigation = ({ isAuthenticated }) => (
   <nav>
-    <NavLink to={routes.HomeView} exact>
+    <NavLink 
+      className={styles.link} 
+      activeClassName={styles.activeLink} 
+      to={routes.HomeView}
+      exact>
       Home
     </NavLink>
 
     {isAuthenticated && (
       <NavLink
+        className={styles.link} 
+        activeClassName={styles.activeLink} 
         to={routes.ContactsView}
         exact       
       >

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import styles from'../../Phonebook.module.css'
+import styles from'../../styles/ContactsView.module.css'
 import { connect } from 'react-redux';
 import {contactsOperations} from '../../redux/contacts';
 import {getVisibleContacts} from '../../redux/contacts/contacts-selectors';
 
 const ContactList = ({contacts, onDeleteContact}) => (
-    <ul className={styles.contacts}>
+    <ul className={styles.form}>
         {contacts.map(({id, name, number}) => (
             <li className={styles.contacts__item} key={id}>
                 <p>{name}: {number}</p>

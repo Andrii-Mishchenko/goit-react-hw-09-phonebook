@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from'../../Phonebook.module.css'
+import styles from'../../styles/ContactsView.module.css'
 import { connect } from 'react-redux';
 import { filterContacts } from '../../redux/contacts';
 import { getFilter } from '../../redux/contacts/contacts-selectors';
 
 
 const Filter = ({value, onChange}) => (
-    <div className={styles.contacts}>
+    <div className={styles.form}>
         <label className={styles.form__label}>
             Find contacts by name
             <input 

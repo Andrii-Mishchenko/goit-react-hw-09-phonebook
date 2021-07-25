@@ -1,8 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
 
-// https://lpj-tasker.herokuapp.com
-// https://connections-api.herokuapp.com
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
