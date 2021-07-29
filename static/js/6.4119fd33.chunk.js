@@ -1,0 +1,2 @@
+(this["webpackJsonpgoit-react-hw-02-phonebook"]=this["webpackJsonpgoit-react-hw-02-phonebook"]||[]).push([[6],{101:function(t,e,n){"use strict";n.r(e);n(0);var o=n(87),i=n.n(o),c=n(1);e.default=function(){return Object(c.jsx)("h1",{className:i.a.title,children:"404 - Page not found"})}},87:function(t,e,n){t.exports={container:"HomeView_container__fnOcL",title:"HomeView_title___E3Ts"}}}]);
+//# sourceMappingURL=6.4119fd33.chunk.js.map
