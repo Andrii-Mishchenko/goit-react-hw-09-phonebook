@@ -1,38 +1,45 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { authOperations } from '../redux/auth';
 import styles from '../styles/AuthorizationsView.module.css'
 
 
-class RegisterView extends Component {
-  state = {
-    name: '',
-    email: '',
-    password: '',
+const RegisterView = () => { 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
 
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-
-    this.props.onRegister(this.state);
-
-    this.setState({ name: '', email: '', password: '' });
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
 
-  render() {
-    const { name, email, password } = this.state;
+  const handleSubmit = (e) => {
+    e.preventDefault();   
 
-    return (
-      <div>
+    dispatch(authOperations.register({ name, email, password }));
+
+    setEmail('');
+    setName('');
+    setPassword('');
+  };
+
+  return (
+          <div>
         <h1 className={styles.title}>Registration Page</h1>
 
         <form
           className={styles.form}
-          onSubmit={this.handleSubmit}       
+          onSubmit={handleSubmit}       
           autoComplete="off"
           
         >
@@ -43,7 +50,7 @@ class RegisterView extends Component {
               type="text"
               name="name"
               value={name}
-              onChange={this.handleChange}
+              onChange={handleNameChange}
             />
           </label>
 
@@ -54,7 +61,7 @@ class RegisterView extends Component {
               type="email"
               name="email"
               value={email}
-              onChange={this.handleChange}
+              onChange={handleEmailChange}
             />
           </label>
 
@@ -65,23 +72,96 @@ class RegisterView extends Component {
               type="password"
               name="password"
               value={password}
-              onChange={this.handleChange}
+              onChange={handlePasswordChange}
             />
           </label>
 
           <button className={styles.button} type="submit">Register</button>
         </form>
       </div>
-    );
-  }
+   );
 }
+ 
+export default RegisterView;
 
-const mapDispatchToProps = {
-  onRegister: authOperations.register,
-};
+// class RegisterView extends Component {
+//   state = {
+//     name: '',
+//     email: '',
+//     password: '',
+//   };
 
-// const mapDispatchToProps = dispatch =>({
-//   onRegister: (data) => dispatch(authOperations.register(data))
-// }) 
+//   handleChange = ({ target: { name, value } }) => {
+//     this.setState({ [name]: value });
+//   };
 
-export default connect(null, mapDispatchToProps)(RegisterView)
+//   handleSubmit = e => {
+//     e.preventDefault();
+
+//     this.props.onRegister(this.state);
+
+//     this.setState({ name: '', email: '', password: '' });
+//   };
+
+//   render() {
+//     const { name, email, password } = this.state;
+
+//     return (
+//       <div>
+//         <h1 className={styles.title}>Registration Page</h1>
+
+//         <form
+//           className={styles.form}
+//           onSubmit={this.handleSubmit}       
+//           autoComplete="off"
+          
+//         >
+//           <label className={styles.form__label}>
+//             Name:
+//             <input
+//               className={styles.form__input}
+//               type="text"
+//               name="name"
+//               value={name}
+//               onChange={this.handleChange}
+//             />
+//           </label>
+
+//           <label className={styles.form__label}>
+//             Email:
+//             <input
+//               className={styles.form__input}
+//               type="email"
+//               name="email"
+//               value={email}
+//               onChange={this.handleChange}
+//             />
+//           </label>
+
+//           <label className={styles.form__label}>
+//             Password:
+//             <input
+//               className={styles.form__input}
+//               type="password"
+//               name="password"
+//               value={password}
+//               onChange={this.handleChange}
+//             />
+//           </label>
+
+//           <button className={styles.button} type="submit">Register</button>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
+
+// const mapDispatchToProps = {
+//   onRegister: authOperations.register,
+// };
+
+// // const mapDispatchToProps = dispatch =>({
+// //   onRegister: (data) => dispatch(authOperations.register(data))
+// // }) 
+
+// export default connect(null, mapDispatchToProps)(RegisterView)
